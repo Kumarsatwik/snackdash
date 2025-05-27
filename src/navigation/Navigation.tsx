@@ -1,8 +1,9 @@
 import LoginScreen from '@features/auth/LoginScreen';
 import SplashScreen from '@features/auth/SplashScreen';
+import AnimatedTab from '@features/tabs/AnimatedTab';
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import { navigationRef } from '@utils/NavigationUtils';
+import {navigationRef} from '@utils/NavigationUtils';
 import {FC} from 'react';
 
 const Stack = createNativeStackNavigator();
@@ -14,7 +15,16 @@ const Navigation: FC = () => {
         initialRouteName="SplashScreen"
         screenOptions={{headerShown: false}}>
         <Stack.Screen name="SplashScreen" component={SplashScreen} />
-        <Stack.Screen options={{animation:'fade'}} name="LoginScreen" component={LoginScreen} />
+        <Stack.Screen
+          options={{animation: 'fade'}}
+          name="LoginScreen"
+          component={LoginScreen}
+        />
+        <Stack.Screen
+          options={{animation: 'fade'}}
+          name="Home"
+          component={AnimatedTab}
+        />
       </Stack.Navigator>
     </NavigationContainer>
   );

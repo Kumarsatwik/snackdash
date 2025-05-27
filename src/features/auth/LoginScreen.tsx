@@ -19,7 +19,7 @@ import useKeyboardOffsetHeight from '@utils/useKeyboardOffsetHeight';
 
 const LoginScreen: FC = () => {
   const animatedValue = useRef(new Animated.Value(0)).current;
-  const keyboardOffsetHeight = useKeyboardOffsetHeight()
+  const keyboardOffsetHeight = useKeyboardOffsetHeight();
 
   const {styles} = useStyles(loginStyles);
   const [phoneNumber, setPhoneNumber] = useState('');
@@ -32,26 +32,25 @@ const LoginScreen: FC = () => {
     setTimeout(() => {
       setLoading(false);
       // Navigate to the next screen or perform login logic
-      resetAndNavigate('UserBottomTabs');
+      resetAndNavigate('Home');
     }, 2000);
   };
 
-
-  useEffect(()=>{
-    if(keyboardOffsetHeight == 0){
-        Animated.timing(animatedValue , {
-            toValue:0,
-            duration:500,
-            useNativeDriver:true
-        }).start();
-    }else{
-        Animated.timing(animatedValue,{
-            toValue: -keyboardOffsetHeight * 0.25,
-            duration:500,
-            useNativeDriver:true
-        }).start();
+  useEffect(() => {
+    if (keyboardOffsetHeight == 0) {
+      Animated.timing(animatedValue, {
+        toValue: 0,
+        duration: 500,
+        useNativeDriver: true,
+      }).start();
+    } else {
+      Animated.timing(animatedValue, {
+        toValue: -keyboardOffsetHeight * 0.25,
+        duration: 500,
+        useNativeDriver: true,
+      }).start();
     }
-  },[animatedValue, keyboardOffsetHeight])
+  }, [animatedValue, keyboardOffsetHeight]);
 
   return (
     <View style={styles.container}>
@@ -96,8 +95,7 @@ const LoginScreen: FC = () => {
 
         <BreakerText text="or" />
 
-       <SocialLogin/>
-
+        <SocialLogin />
       </Animated.ScrollView>
 
       <View style={styles.footer}>
